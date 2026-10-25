@@ -1,188 +1,111 @@
-🎓 CGPA Calculator
+# 🎓 Student Record & CGPA System
 
-A C++ Console Application for Semester GPA and Cumulative GPA Calculation
+## 📌 About the Project
 
-Add Semesters · Record Grades · Calculate SGPA · Track Overall CGPA
+The **Student Record & CGPA System** is a menu-driven C++ application that helps students manage their academic records. Students can create an account, log in, manage subjects, update marks, and calculate their CGPA.
 
-📌 Overview
+This project is developed using basic C++ concepts, data structures, file handling, and exception handling. Student records are stored in text and data files, so the information can be accessed again after restarting the program.
 
-The CGPA Calculator is a terminal-based application developed in C++. It helps students record course names, credit hours, and grades for each semester, calculate semester GPA (SGPA), and view their overall CGPA.
+The main goal of this project is to apply Data Structures and C++ programming concepts to solve a real-world problem.
 
-The application uses standard C++ file handling to save academic records in a text file. Previously saved records are loaded when the program starts, allowing students to continue using the calculator without entering their records again.
+## ✨ Features
 
-✨ Key Features
+* 📝 **Student Sign Up:** Create a new student account.
+* 🔐 **Student Sign In:** Log in using Student ID, name, and password.
+* ➕ **Add Subject:** Add subjects with marks and credits.
+* 📋 **View Subjects:** Display all subjects, marks, credits, and grade points.
+* ✏️ **Update Subject:** Update subject names, marks, or credits.
+* 🗑️ **Remove Subject:** Remove a subject with a confirmation option.
+* 🧮 **CGPA Calculation:** Calculate CGPA using grade points and subject credits.
+* 🔍 **Search Subject:** Search for subjects by name or part of the name.
+* 📊 **Sort Subjects:** Arrange subjects by marks from highest to lowest.
+* 📈 **Academic Summary:** View total subjects, average marks, highest marks, lowest marks, passed subjects, and subjects below passing marks.
+* 🔑 **Change Password:** Change the account password after verifying the current password.
+* 💾 **File Handling:** Save and retrieve student accounts and academic records using files.
+* 🛡️ **Input Validation:** Check user input and restrict invalid marks, credits, and menu choices.
+* ⚠️ **Exception Handling:** Handle certain invalid data and unexpected input errors.
 
-Feature
+## 🛠️ Technologies Used
 
-Description
+* **Programming Language:** C++
+* **Compiler Standard:** C++11
+* **Data Storage:** Text files and `.dat` files
+* **File Handling:** `ifstream`, `ofstream`, and `stringstream`
+* **Data Structures:** Structures and vectors
 
-➕ Add Semester
+## 🧠 C++ Concepts Used
 
-Enter courses for a new semester.
+### 1. Structures
 
-📚 Course Records
+The project uses two structures:
 
-Store course names, credit hours, and grades.
+* `Student` — stores the student's ID, name, password, and subjects.
+* `Subject` — stores the subject name, marks, and credits.
 
-🧮 SGPA Calculation
+Structures help organize related information in a simple and understandable way.
 
-Calculate the GPA for a selected semester using credits and grade points.
+### 2. Vector
 
-🎓 Overall CGPA
+The project uses `vector<Subject>` to store multiple subjects for each student.
 
-Calculate cumulative GPA from all saved courses.
+A vector can grow or shrink when subjects are added or removed, so there is no need to use a fixed-size array for subject records.
 
-📋 Academic Summary
+### 3. Searching
 
-View all course records and semester-wise GPA.
+Linear search is used to find subjects by name. The search can match the complete name or part of the name.
 
-💾 Persistent Storage
+### 4. Sorting
 
-Save and reload records using a text file.
+Bubble sort is used to arrange subjects according to marks in descending order.
 
-🛡️ Input Validation
+### 5. Functions
 
-Check menu choices, credits, and supported grades.
+The program is divided into separate functions for tasks such as registration, login, adding subjects, updating records, searching, sorting, and calculating CGPA.
 
-🗑️ Reset Records
+This makes the program easier to read, understand, test, and maintain.
 
-Clear saved academic records after confirmation.
+### 6. Exception Handling
 
-📈 Grading Scale
+`try-catch` blocks handle certain conversion errors and unexpected input termination. Input validation is also used to prevent invalid values from being accepted.
 
-Display the grade-point scale used by the program.
+### 7. File Handling
 
-🧮 GPA and CGPA Calculation
+The program uses basic C++ file streams to save and read student information.
 
-The application uses the following grade-point mapping:
+This allows academic records to remain available when the program is closed and opened again.
 
-CGPA Formula
-CGPA = ∑(Grade Point×Credits)​ / ∑Credits
+## 📂 Files Used
 
-🧰 Technology Stack
+### `student_accounts.txt`
 
-Programming Language: C++
+Stores account information, including Student ID, student name, password, and the name of the student's data file.
 
-C++ Standard: C++11
+### Student Data Files
 
-Interface: Command-Line Interface (CLI)
+Each student has a separate `.dat` file containing their ID, name, and subject records.
 
-File Handling: fstream, ifstream, ofstream
+### Temporary Account File
 
-Data Structures: Structures and vectors
+`student_accounts_temp.txt` is used when changing a password so the account records can be rewritten with the updated password.
 
-Storage Format: .txt file
+These files are created and managed by the program when required.
 
-Input Validation: Conditions, loops, and input checks
+## 🧮 CGPA Calculation
 
-🗂️ Project Structure
+The program assigns grade points according to the marks entered for each subject.
 
-CGPA-Calculator/
-│
-├── CGPA_Calculator.cpp
-├── README.md
-└── cgpa_records.txt    # Created by the application when needed
+| Marks    | Grade Point |
+| -------- | ----------: |
+| 90–100   |          10 |
+| 80–89.99 |           9 |
+| 70–79.99 |           8 |
+| 60–69.99 |           7 |
+| 50–59.99 |           6 |
+| 40–49.99 |           5 |
+| Below 40 |           0 |
 
-File
+The CGPA is calculated using the following formula:
 
-Purpose
+**CGPA = Sum of (Grade Point × Subject Credits) / Total Credits**
 
-CGPA_Calculator.cpp
-
-Contains the C++ source code.
-
-README.md
-
-Project documentation.
-
-cgpa_records.txt
-
-Stores semester-wise course and grade records. The application creates this file when needed.
-
-🚀 Getting Started
-
-1. Prerequisites
-
-Windows computer
-
-Visual Studio Code
-
-A C++ compiler such as g++ (MinGW-w64)
-
-2. Compile the Program
-
-Open the project folder in VS Code, open the terminal, and run:
-
-g++ -std=c++11 -Wall -Wextra -pedantic CGPA_Calculator.cpp -o CGPA_Calculator.exe
-
-3. Run the Program
-
-In Windows PowerShell, execute:
-
-.\CGPA_Calculator.exe
-
-4. Use the Application
-
-The main menu provides these options:
-
-Add a new semester
-
-View overall CGPA and all records
-
-View results of a particular semester
-
-View the grading scale
-
-Reset all saved records
-
-Save and exit
-
-Enter the menu number and follow the prompts to record courses, select grades, and view the calculated results.
-
-💾 How File Handling Works
-
-The application uses cgpa_records.txt to store course records. Each record includes the semester number, course name, credits, grade, and grade point.
-
-When the program starts, it reads the saved records from the file. When a semester is added or records are reset, the application updates the file so the information is available the next time the program runs.
-
-🎯 Project Objectives
-
-Develop a menu-driven C++ console application.
-
-Practise structures, vectors, and functions.
-
-Use file handling to preserve academic records.
-
-Calculate SGPA and CGPA using credit-weighted grade points.
-
-Apply input validation and basic error handling.
-
-Organize course information in a readable report.
-
-⚠️ Current Limitations
-
-The grading scale is predefined in the source code.
-
-Records are stored locally in a text file.
-
-The application does not use a database or graphical interface.
-
-The application records grades and credits entered by the user; results depend on the accuracy of that input.
-
-🔮 Possible Future Improvements
-
-Add editing and deleting options for individual course records.
-
-Add student profiles and sign-in functionality.
-
-Add semester-wise printable reports.
-
-Allow configurable college grading scales.
-
-Add a graphical user interface.
-
-👩‍💻 Developed by Harmanpreet Kaur
-
-B.Tech — Computer Science & Engineering
-
-Built with C++ and file handling.
+The grading scale should be checked against your colle
